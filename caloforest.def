@@ -1,0 +1,10 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
+
+
+%post
+    pip install tbb h5py tensorboardX xgboost joblib tqdm numpy pandas scikit-learn matplotlib
+
+%runscript
+    cd caloforest
+    bash sample.sh
