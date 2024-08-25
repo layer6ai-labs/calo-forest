@@ -1,6 +1,10 @@
-# README
+<p align="center">
+<a href="https://layer6.ai/"><img src="https://github.com/layer6ai-labs/DropoutNet/blob/master/logs/logobox.jpg" width="180"></a>
+</p>
 
-This is the codebase accompanying the work [Scaling Up Diffusion and Flow-based XGBoost Models](https://arxiv.org/abs/2409.XXXXX). It builds on [ForestDiffusion](https://github.com/SamsungSAILMontreal/ForestDiffusion) associated with the paper ["Generating and Imputing Tabular Data via Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2309.09968). Here we discuss how to run the experiments in the paper and give a general overview of the codebase.
+# Diffusion and Flow-based XGBoost Models
+
+This is the codebase accompanying the work ["Scaling Up Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2409.XXXXX). It builds on [ForestDiffusion](https://github.com/SamsungSAILMontreal/ForestDiffusion) associated with the paper ["Generating and Imputing Tabular Data via Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2309.09968). Here we discuss how to run the experiments in the paper and give a general overview of the codebase.
 
 ## Python Environment Setup
 
