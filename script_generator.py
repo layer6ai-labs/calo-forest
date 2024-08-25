@@ -88,6 +88,7 @@ with open(script_file_path + "run_MO_Scaled.sh", "w") as file1:
 # Create random datasets of different sizes.
 with open(script_file_path + "run_resource_scaling.sh", "w") as file1:
     path = results_file_path + "resource_scaling"
+    early_stopping = [None, 20]
     multi_strategy = ['one_output_per_tree', 'multi_output_tree']
     num_datapoints = [1000, 3000, 10000, 30000, 100000, 300000]
     base_datapoints_idx = 0
@@ -96,17 +97,18 @@ with open(script_file_path + "run_resource_scaling.sh", "w") as file1:
     num_classes = [1, 3, 10, 30, 100]
     base_classes_index = 2
 
-    for method in multi_strategy:
-        for n in num_datapoints:
-            file1.write(f"python main.py --skip-eval --dataset=random --config num_random_datapoints={n} --config num_random_features={num_features[base_features_idx]} --config num_random_classes={num_classes[base_classes_index]} --config multi_strategy={method} --config diffusion_type=flow --config scaler=single_min_max --config n_jobs={n_cpu} --config xgb_n_jobs=1 --config seed={seed} --config log_delay=1.0 --config eps=0 --config logdir_root={path}/{method}\n")
-        file1.write("\n")
-        base = num_features.pop(base_features_idx) # this would be a duplicate run
-        for n in num_features:
-            file1.write(f"python main.py --skip-eval --dataset=random --config num_random_datapoints={num_datapoints[base_datapoints_idx]} --config num_random_features={n} --config num_random_classes={num_classes[base_classes_index]} --config multi_strategy={method} --config diffusion_type=flow --config scaler=single_min_max --config n_jobs={n_cpu} --config xgb_n_jobs=1 --config seed={seed} --config log_delay=1.0 --config eps=0 --config logdir_root={path}/{method}\n")
-        file1.write("\n")
-        num_features.insert(base_features_idx, base)
-        base = num_classes.pop(base_classes_index) # this would be a duplicate run
-        for n in num_classes:
-            file1.write(f"python main.py --skip-eval --dataset=random --config num_random_datapoints={num_datapoints[base_datapoints_idx]} --config num_random_features={num_features[base_features_idx]} --config num_random_classes={n} --config multi_strategy={method} --config diffusion_type=flow --config scaler=single_min_max --config n_jobs={n_cpu} --config xgb_n_jobs=1 --config seed={seed} --config log_delay=1.0 --config eps=0 --config logdir_root={path}/{method}\n")
-        file1.write("\n")
-        num_classes.insert(base_classes_index, base)
+    for es in early_stopping:
+        for method in multi_strategy:
+            for n in num_datapoints:
+                file1.write(f"python main.py --skip-eval --dataset=random --config num_random_datapoints={n} --config num_random_features={num_features[base_features_idx]} --config num_random_classes={num_classes[base_classes_index]} --config early_stopping_rounds={es} --config multi_strategy={method} --config diffusion_type=flow --config scaler=single_min_max --config n_jobs={n_cpu} --config xgb_n_jobs=1 --config seed={seed} --config log_delay=1.0 --config eps=0 --config logdir_root={path}/{method}\n")
+            file1.write("\n")
+            base = num_features.pop(base_features_idx) # this would be a duplicate run
+            for n in num_features:
+                file1.write(f"python main.py --skip-eval --dataset=random --config num_random_datapoints={num_datapoints[base_datapoints_idx]} --config num_random_features={n} --config num_random_classes={num_classes[base_classes_index]} --config early_stopping_rounds={es} --config multi_strategy={method} --config diffusion_type=flow --config scaler=single_min_max --config n_jobs={n_cpu} --config xgb_n_jobs=1 --config seed={seed} --config log_delay=1.0 --config eps=0 --config logdir_root={path}/{method}\n")
+            file1.write("\n")
+            num_features.insert(base_features_idx, base)
+            base = num_classes.pop(base_classes_index) # this would be a duplicate run
+            for n in num_classes:
+                file1.write(f"python main.py --skip-eval --dataset=random --config num_random_datapoints={num_datapoints[base_datapoints_idx]} --config num_random_features={num_features[base_features_idx]} --config num_random_classes={n} --config early_stopping_rounds={es} --config multi_strategy={method} --config diffusion_type=flow --config scaler=single_min_max --config n_jobs={n_cpu} --config xgb_n_jobs=1 --config seed={seed} --config log_delay=1.0 --config eps=0 --config logdir_root={path}/{method}\n")
+            file1.write("\n")
+            num_classes.insert(base_classes_index, base)
