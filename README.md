@@ -4,7 +4,7 @@
 
 # Diffusion and Flow-based XGBoost Models
 
-This is the codebase accompanying the work ["Scaling Up Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2409.XXXXX). It builds on [ForestDiffusion](https://github.com/SamsungSAILMontreal/ForestDiffusion) associated with the paper ["Generating and Imputing Tabular Data via Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2309.09968). Here we discuss how to run the experiments in the paper and give a general overview of the codebase.
+This is the codebase accompanying the work ["Scaling Up Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2408.16046). It builds on [ForestDiffusion](https://github.com/SamsungSAILMontreal/ForestDiffusion) associated with the paper ["Generating and Imputing Tabular Data via Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2309.09968). Here we discuss how to run the experiments in the paper and give a general overview of the codebase.
 
 ## Python Environment Setup
 
@@ -106,7 +106,7 @@ If you use any part of this repository in your research, please cite the associa
 @article{cresswell2024scaling,
   title={Scaling Up Diffusion and Flow-based XGBoost Models},
   author={Cresswell, Jesse C and Kim, Taewoo},
-  journal={arXiv:2409.XXXXX},
+  journal={arXiv:2408.16046},
   year={2024}
 }
 ```
