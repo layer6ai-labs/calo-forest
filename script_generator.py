@@ -13,12 +13,12 @@ DATASETS = ['iris', 'wine', 'california', 'parkinsons', \
 # Writing to file
 # UPDATE THIS
 home_dir = os.environ['HOME']
-script_file_path = home_dir + "/research/calo-forest/scripts/"
+script_file_path = home_dir + "/research/temp/calo-forest/scripts/"
 results_file_path = "saved_runs/"
 
 # Number of CPU available
 # UPDATE THIS
-n_cpu = 40
+n_cpu = os.cpu_count()
 
 # seed
 seed = 0
@@ -27,6 +27,9 @@ seed = 0
 long_runs = ['bean', 'connectionist_bench_sonar', 'libras', 'qsar_biodegradation']
 log_delay = 1.0
 
+if not os.path.exists(script_file_path):
+    os.makedirs(script_file_path)
+    print(f'Folder "{script_file_path}" created.')
 # Baseline - match hyperparameters of ForestDiffusion.
 # This matches model performance of Original, but uses our implementation for speed and memory benefits.
 with open(script_file_path + "run_original.sh", "w") as file1:
@@ -112,3 +115,4 @@ with open(script_file_path + "run_resource_scaling.sh", "w") as file1:
                 file1.write(f"python main.py --skip-eval --dataset=random --config num_random_datapoints={num_datapoints[base_datapoints_idx]} --config num_random_features={num_features[base_features_idx]} --config num_random_classes={n} --config early_stopping_rounds={es} --config multi_strategy={method} --config diffusion_type=flow --config scaler=single_min_max --config n_jobs={n_cpu} --config xgb_n_jobs=1 --config seed={seed} --config log_delay=1.0 --config eps=0 --config logdir_root={path}/{method}\n")
             file1.write("\n")
             num_classes.insert(base_classes_index, base)
+print("All scripts created.")
