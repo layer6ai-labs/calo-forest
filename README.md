@@ -4,7 +4,26 @@
 
 # Diffusion and Flow-based XGBoost Models
 
+<div align="center">
+
+[![arxiv](https://img.shields.io/static/v1?label=arXiv&message=2408.16046&color=B31B1B&logo=arXiv)](https://arxiv.org/abs/2408.16046)
+[![pypi](https://img.shields.io/pypi/v/forest-diffusion-mo.svg)](https://pypi.org/project/forest-diffusion-mo/)
+
+</div>
+
 This is the codebase accompanying the work ["Scaling Up Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2408.16046). It builds on [ForestDiffusion](https://github.com/SamsungSAILMontreal/ForestDiffusion) associated with the paper ["Generating and Imputing Tabular Data via Diffusion and Flow-based XGBoost Models"](https://arxiv.org/abs/2309.09968). Here we discuss how to run the experiments in the paper and give a general overview of the codebase.
+
+**UPDATE 2026-03:** Multi-output Forest Diffusion is now available on PyPi as an installable package, see [this repo](https://github.com/layer6ai-labs/forest-diffusion-mo) for details.
+
+Install via `uv`:
+```bash
+uv pip install forest_diffusion_mo
+```
+
+Or with `pip`:
+```bash
+pip install forest_diffusion_mo
+```
 
 ## Python Environment Setup
 
